@@ -13,7 +13,7 @@ class Departments extends CI_Controller {
         if (!empty($name)) {
             $data = [
                 'name' => $name,
-                'status' => 1
+                'status' => 1,
             ];
             $this->Department->insert($data);
             $this->session->set_flashdata('success', 'Department added successfully.');
