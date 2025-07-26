@@ -27,4 +27,16 @@ class Department extends CI_Model
         $newStatus = ($dept['status'] == 1) ? 0 : 1;
         return $this->db->update('departments', ['status' => $newStatus], ['id' => $id]);
     }
+
+     public function get_department_by_id($id) {
+        $sql = "SELECT * FROM departments WHERE id = $id LIMIT 1";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+
+    public function update_department($id, $data)
+    {
+        return $this->db->where('id', $id)->update('departments', $data);
+    }
+
 }

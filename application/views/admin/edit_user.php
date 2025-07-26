@@ -14,12 +14,12 @@
             <form action="<?php echo base_url('users/updateUser/' . $user['id']); ?>" method="post" class="regisFrm">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" name="first_name" value="<?php echo $user['first_name']; ?>" required>
+                    <input type="text" name="first_name" value="<?php echo $user['first_name']; ?>" required onkeypress="return onlyAlphabetKey(event)">
                 </div>
 
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" name="last_name" value="<?php echo $user['last_name']; ?>" required>
+                    <input type="text" name="last_name" value="<?php echo $user['last_name']; ?>" required onkeypress="return onlyAlphabetKey(event)">
                 </div>
 
                 <div class="form-group">
@@ -29,7 +29,8 @@
 
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="tel" name="phone" value="<?php echo $user['phone']; ?>">
+                     <input type="text" name="phone" maxlength="10" oninput="validatePhoneLength(this)" onkeypress="return onlyNumberKey(event)"  value="<?php echo !empty($user['phone']) ? $user['phone'] : ''; ?>" required>
+                    <?php echo form_error('phone','<p class="help-block">','</p>'); ?>
                 </div>
 
                 <div class="form-group">
@@ -45,12 +46,12 @@
 
                 <div class="form-group">
                     <label>Designation</label>
-                    <input type="text" name="designation" value="<?php echo $user['designation']; ?>">
+                    <input type="text" name="designation" value="<?php echo $user['designation']; ?>" onkeypress="return onlyAlphabetKey(event)" required>
                 </div>
 
                 <div class="form-group">
                     <label>Salary</label>
-                    <input type="number" name="salary" value="<?php echo $user['salary']; ?>" min="0">
+                    <input type="text" name="salary" onkeypress="return onlyNumberKey(event)" value="<?php echo $user['salary']; ?>" min="0">
                 </div>
 
                 <div class="form-group">
@@ -67,5 +68,7 @@
             </form>
         </div>
     </div>
+
+    <script src="<?php echo base_url('assets/js/myScript.js'); ?>"></script>
 </body>
 </html>

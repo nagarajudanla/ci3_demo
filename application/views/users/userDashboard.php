@@ -28,7 +28,7 @@
                     <tr><td>Name</td><td><?php echo ($this->session->userdata('first_name')." ". $this->session->userdata('last_name')); ?></td></tr>
                     <tr><td>Email</td><td><?php echo $this->session->userdata('email'); ?></td></tr>
                     <tr><td>User Type</td><td><?php echo ($this->session->userdata('employee_type') == 1) ? 'Admin' : 'Employee'; ?></td></tr>
-                    <tr><td>Salary</td><td><?php echo $this->session->userdata('salary'); ?></td></tr>
+                    <tr><td>Salary</td><td><?php echo $this->session->userdata('salary'). " Rs"; ?></td></tr>
                     <tr><td>Phone</td><td><?php echo $this->session->userdata('phone'); ?></td></tr>
 
                     
