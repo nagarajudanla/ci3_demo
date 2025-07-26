@@ -47,7 +47,7 @@ class Users extends CI_Controller
             ['regex_match' => 'Password must contain at least one uppercase letter, one lowercase letter, and one special character.']
         );
         $this->form_validation->set_rules('conf_password', 'Confirm Password', 'required|matches[password]');
-        $this->form_validation->set_rules('phone', 'Phone', 'required|is_unique[users.phone]');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric|exact_length[10]|is_unique[users.phone]');
         $this->form_validation->set_rules('department', 'Department', 'required');
         $this->form_validation->set_rules('designation', 'Designation', 'required');
         
@@ -180,7 +180,7 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('last_name', 'Last Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('phone', 'Phone', 'required');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric|exact_length[10]|is_unique[users.phone]');
 
         if ($this->form_validation->run() === TRUE) {
             $updateData = [

@@ -20,11 +20,11 @@
     <div class="regisFrm">
         <form action="<?php echo base_url('users/register'); ?>" method="post">
             <div class="form-group">
-                <input type="text" name="first_name" placeholder="FIRST NAME" value="<?php echo !empty($user['first_name'])?$user['first_name']:''; ?>" required>
+                <input type="text" name="first_name" placeholder="FIRST NAME" value="<?php echo !empty($user['first_name'])?$user['first_name']:''; ?>" required onkeypress="return onlyAlphabetKey(event)">
                 <?php echo form_error('first_name','<p class="help-block">','</p>'); ?>
             </div>
             <div class="form-group">
-                <input type="text" name="last_name" placeholder="LAST NAME" value="<?php echo !empty($user['last_name'])?$user['last_name']:''; ?>" required>
+                <input type="text" name="last_name" placeholder="LAST NAME" value="<?php echo !empty($user['last_name'])?$user['last_name']:''; ?>" required onkeypress="return onlyAlphabetKey(event)">
                 <?php echo form_error('last_name','<p class="help-block">','</p>'); ?>
             </div>
             <div class="form-group">
@@ -40,9 +40,10 @@
                 <?php echo form_error('conf_password','<p class="help-block">','</p>'); ?>
             </div>
             <div class="form-group">
-                <input type="text" name="phone" placeholder="PHONE NUMBER" value="<?php echo !empty($user['phone'])?$user['phone']:''; ?>">
+                <input type="text" name="phone" placeholder="PHONE NUMBER" maxlength="10" onkeypress="return onlyNumberKey(event)" oninput="validatePhoneLength(this)" value="<?php echo !empty($user['phone']) ? $user['phone'] : ''; ?>" required>
                 <?php echo form_error('phone','<p class="help-block">','</p>'); ?>
             </div>
+
             <div class="form-group">
                 <select name="department" required>
                     <option value="">-- SELECT DEPARTMENT --</option>
@@ -53,7 +54,7 @@
                 <?php echo form_error('department','<p class="help-block">','</p>'); ?>
             </div>
             <div class="form-group">
-                <input type="text" name="designation" placeholder="DESIGNATION" value="<?php echo !empty($user['designation']) ? $user['designation'] : ''; ?>" required>
+                <input type="text" name="designation" placeholder="DESIGNATION" value="<?php echo !empty($user['designation']) ? $user['designation'] : ''; ?>" required onkeypress="return onlyAlphabetKey(event)">
                 <?php echo form_error('designation', '<p class="help-block">', '</p>'); ?>
             </div>
 
@@ -65,3 +66,5 @@
         <p>Already have an account? <a href="<?php echo base_url('users/login'); ?>">Login here</a></p>
     </div>
 </div>
+
+<script src="<?php echo base_url('assets/js/myScript.js'); ?>"></script>

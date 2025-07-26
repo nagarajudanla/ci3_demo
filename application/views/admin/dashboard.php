@@ -63,7 +63,7 @@
                     <form action="<?php echo base_url('departments/save'); ?>" method="POST">
                         <div class="form-group">
                             <label for="name">Department Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
+                            <input type="text" name="name" id="name" class="form-control" required onkeypress="return onlyAlphabetKey(event)">
                         </div>
 
                         <div class="form-group">
@@ -98,7 +98,15 @@
                                 <td><?php echo $user['phone']; ?></td>
                                 <td><?php echo $user['department_name']; ?></td>
                                 <td><?php echo $user['designation']; ?></td>
-                                <td><?php echo $user['salary']; ?></td>
+                                <!-- <td><?php echo $user['salary']. " Rs"; ?></td> -->
+                                 <td><?php 
+                                        if(isset($user['salary'])){
+                                            echo $user['salary']. " Rs";
+                                        }else{
+                                            echo "0". " Rs";
+                                        }
+                                    ?>
+                                </td>
                                 <td><?php echo ($user['employee_type'] == 1) ? 'Admin' : 'Employee'; ?></td>
                                 <td><?php echo ($user['status'] == 1) ? 'Active' : 'Inactive'; ?></td>
                                 <td class="action-btns">
@@ -121,7 +129,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Status</th>
-                            <!-- <th>Actions</th> -->
+                            <th>Last Modified</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,13 +139,14 @@
                                 <td><?php echo $dept['id']; ?></td>
                                 <td><?php echo $dept['name']; ?></td>
                                 <td><?php echo ($dept['status'] == 1) ? 'Active' : 'Inactive'; ?></td>
-                                <!-- <td class="action-btns">
-                                    <a href="<?php echo base_url('departments/edit/' . $dept['id']); ?>" class="edit-btn">Edit</a>
-                                    <a href="<?php echo base_url('departments/delete/' . $dept['id']); ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this department?')">Delete</a>
+                                 <td><?php echo date('d-m-Y', strtotime($dept['modified'])); ?></td>
+                                <td class="action-btns">
+                                    <a href="<?php echo base_url('departments/editDepartment/' . $dept['id']); ?>" class="edit-btn">Edit</a>
+                                    <!-- <a href="<?php echo base_url('departments/delete/' . $dept['id']); ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this department?')">Delete</a>
                                     <a href="<?php echo base_url('departments/toggleStatus/' . $dept['id']); ?>" class="toggle-btn">
                                         <?php echo ($dept['status'] == 1) ? 'Deactivate' : 'Activate'; ?>
-                                    </a>
-                                </td> -->
+                                    </a> -->
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -162,6 +172,8 @@
         });
     });
 </script>
+
+<script src="<?php echo base_url('assets/js/myScript.js'); ?>"></script>
 
 </body>
 </html>
